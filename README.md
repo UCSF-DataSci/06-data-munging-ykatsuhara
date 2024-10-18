@@ -87,31 +87,31 @@ We applied multiple steps to handle outliers:
 
 - **Implementation**:
   ```python
-  # Include relevant code snippet
+  # Handle outliers
     # Remove future years (year > 2024)
     df = df[df['year'] <= 2024]
     print(f"Rows after removing future years (year > 2024): {df.shape[0]}")
 
     # Handle outliers in the 'population' column using IQR method
-    Q1 = df['population'].quantile(0.25)
-    Q3 = df['population'].quantile(0.75)
-    IQR = Q3 - Q1
+    Q1 = df['population'].quantile(0.25) # Identify Q1
+    Q3 = df['population'].quantile(0.75) # Identify Q3
+    IQR = Q3 - Q1 # Calculate the IQR
     df = df[~((df['population'] < (Q1 - 1.5 * IQR)) | (df['population'] > (Q3 + 1.5 * IQR)))]
     print(f"Rows after handling outliers in 'population': {df.shape[0]}")
 
     # Handle outliers in the 'age' column using IQR method
-    Q1 = df['age'].quantile(0.25)
-    Q3 = df['age'].quantile(0.75)
-    IQR = Q3 - Q1
+    Q1 = df['age'].quantile(0.25) # Identify Q1
+    Q3 = df['age'].quantile(0.75) # Identify Q3
+    IQR = Q3 - Q1 # Calculate the IQR
     df = df[~((df['age'] < (Q1 - 1.5 * IQR)) | (df['age'] > (Q3 + 1.5 * IQR)))]
     print(f"Rows after handling outliers in 'age': {df.shape[0]}")
 
     # Handle invalid 'gender' values
-    df = df[df['gender'] != 3]
+    df = df[df['gender'] != 3] # Remain the records with Gender = 1 or 2
     print(f"Rows after handling invalid 'gender' values: {df.shape[0]}")
 
     # Fix inconsistencies in the 'income_groups' column by removing '_typo'
-    df['income_groups'] = df['income_groups'].str.replace('_typo', '', regex=False)
+    df['income_groups'] = df['income_groups'].str.replace('_typo', '', regex=False) # Replace '_typo' to ''
     print("Removing '_typo' in the 'income_groups' column.")
   ```
 - **Justification**: 
@@ -129,7 +129,6 @@ We set `gender` as category.
 - **Implementation**:
   ```python
   df['gender'].astype('category')
-
   ```
 - **Justification**: 
 Gender should be handled as a categorical variable to ensure proper model interpretation and avoid erroneous results.
