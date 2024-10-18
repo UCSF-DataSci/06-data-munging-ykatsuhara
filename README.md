@@ -37,17 +37,17 @@
    - Description: Some columns contain outliers or values that seem implausible.
    - Affected Column(s): Gender, Year, Population, Income_group
    - Example:
-    - **Gender:** The maximum value in the gender column is 3, which is unclear. Typically, gender is binary or may include a third category, but the meaning of this value is uncertain.
-    - **Year:** The maximum year recorded is 2219, which is implausible given that we are currently in 2024.
-    - **Population:** The some values are quite large when we plot the histgram.
-    - **Income Group** Some values include '_typo'.
+     - **Gender:** The maximum value in the gender column is 3, which is unclear. Typically, gender is binary or may include a third category, but the meaning of this value is uncertain.
+     - **Year:** The maximum year recorded is 2219, which is implausible given that we are currently in 2024.
+     - **Population:** The some values are quite large when we plot the histgram.
+     - **Income Group** Some values include '_typo'.
    - Potential Impact: If the values are inaccurate, it could lead to misinterpretation of trends or incorrect model outcomes.
 
 4. **Data type**
    - Description: `gender` is set as float.
    - Affected Column(s): Gender
    - Example:
-    - **Gender:**  The data type is float64.
+     - **Gender:**  The data type is float64.
    - Potential Impact: If `gender` is treated as a continuous variable (float), it could lead to incorrect interpretations in analyses such as regression models. Gender should be handled as a categorical variable to ensure proper model interpretation and avoid erroneous results.
 
 
@@ -55,11 +55,9 @@
 ### Issue 1: Duplicated record
 - **Cleaning Method**: Remove all duplicated records
 - **Implementation**:
-  ```python
-
- df.drop_duplicates()
-  
-  ```
+ ```python
+ df.drop_duplicates()  
+ ```
 - **Justification**: We remove all duplicated records because duplicated records will skew data distribution.
 
 - **Impact**: 
@@ -81,10 +79,10 @@
 ### Issue 3: Outliers and questionable values
 - **Cleaning Method**: 
 We applied multiple steps to handle outliers:
-- **Year**: Removed years after 2024 since these values are implausible.
-- **Population & Age**: We used the IQR method to identify and remove extreme values in both the `population` and `age` columns.
-- **Gender**: Excluded rows where `gender` was recorded as 3, since this value is unclear and likely erroneous.
-- **Income Groups**: Fixed a typo in the `income_groups` column by removing the `_typo` suffix.
+  - **Year**: Removed years after 2024 since these values are implausible.
+  - **Population & Age**: We used the IQR method to identify and remove extreme values in both the `population` and `age` columns.
+  - **Gender**: Excluded rows where `gender` was recorded as 3, since this value is unclear and likely erroneous.
+  - **Income Groups**: Fixed a typo in the `income_groups` column by removing the `_typo` suffix.
 
 - **Implementation**:
   ```python
