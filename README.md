@@ -115,9 +115,9 @@ We applied multiple steps to handle outliers:
     print("Removing '_typo' in the 'income_groups' column.")
   ```
 - **Justification**: 
-- The **IQR method** was chosen to handle outliers in `age` and `population` as it is a standard method to detect extreme values that are likely to be anomalies. This method is particularly effective when we don't have domain knowledge about the expected distribution but still want to ensure that the extreme values are reasonable.
-- The removal of years beyond 2024 and the exclusion of `gender = 3` are based on the implausibility of these values in the current dataset. These values could lead to skewed analysis if not handled properly.
-- Correcting the typo in the `income_groups` column ensures that categories remain consistent and meaningful, reducing potential issues in group-based analysis.
+  - The **IQR method** was chosen to handle outliers in `age` and `population` as it is a standard method to detect extreme values that are likely to be anomalies. This method is particularly effective when we don't have domain knowledge about the expected distribution but still want to ensure that the extreme values are reasonable.
+  - The removal of years beyond 2024 and the exclusion of `gender = 3` are based on the implausibility of these values in the current dataset. These values could lead to skewed analysis if not handled properly.
+  - Correcting the typo in the `income_groups` column ensures that categories remain consistent and meaningful, reducing potential issues in group-based analysis.
 
 - **Impact**: 
   - Rows affected: 95,425 -> 40,438
