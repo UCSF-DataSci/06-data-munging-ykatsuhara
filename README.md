@@ -22,42 +22,43 @@
 
 ### Identified Issues
 1. **Duplicated values:**
-   - Description: Several records are duplicated
-   - Affected Column(s): N/A
-   - Example: There are 2,950 records are duplicated.
-   - Potential Impact: Duplicated record will skew data distribution and it cause the biased results.
+- Description: Several records are duplicated
+- Affected Column(s): N/A
+- Example: There are 2,950 records are duplicated.
+- Potential Impact: Duplicated record will skew data distribution and it cause the biased results.
 
 2. **Null values:**
-   - Description: Several columns contain missing values.
-   - Affected Column(s): All columns contain null values.
-   - Example: There are 6,223 records with missing age values.
-   - Potential Impact: If the missing values are not randomly distributed, for example, if individuals with lower income are more likely to have missing age values, the analysis might not accurately reflect the true population. This could lead to biased outcomes.
+- Description: Several columns contain missing values.
+- Affected Column(s): All columns contain null values.
+- Example: There are 6,223 records with missing age values.
+- Potential Impact: If the missing values are not randomly distributed, for example, if individuals with lower income are more likely to have missing age values, the analysis might not accurately reflect the true population. This could lead to biased outcomes.
 
 3. **Outliers and questionable values**
-   - Description: Some columns contain outliers or values that seem implausible.
-   - Affected Column(s): Gender, Year, Population, Income_group
-   - Example:
+- Description: Some columns contain outliers or values that seem implausible.
+- Affected Column(s): Gender, Year, Population, Income_group
+- Example:
      - **Gender:** The maximum value in the gender column is 3, which is unclear. Typically, gender is binary or may include a third category, but the meaning of this value is uncertain.
      - **Year:** The maximum year recorded is 2219, which is implausible given that we are currently in 2024.
      - **Population:** The some values are quite large when we plot the histgram.
      - **Income Group** Some values include '_typo'.
-   - Potential Impact: If the values are inaccurate, it could lead to misinterpretation of trends or incorrect model outcomes.
+- Potential Impact: If the values are inaccurate, it could lead to misinterpretation of trends or incorrect model outcomes.
 
 4. **Data type**
-   - Description: `gender` is set as float.
-   - Affected Column(s): Gender
-   - Example:
+- Description: `gender` is set as float.
+- Affected Column(s): Gender
+- Example:
      - **Gender:**  The data type is float64.
-   - Potential Impact: If `gender` is treated as a continuous variable (float), it could lead to incorrect interpretations in analyses such as regression models. Gender should be handled as a categorical variable to ensure proper model interpretation and avoid erroneous results.
+- Potential Impact: If `gender` is treated as a continuous variable (float), it could lead to incorrect interpretations in analyses such as regression models. Gender should be handled as a categorical variable to ensure proper model interpretation and avoid erroneous results.
 
 
 ## 2. Data Cleaning Process
 ### Issue 1: Duplicated record
 - **Cleaning Method**: Remove all duplicated records
 - **Implementation**:
- ```python
- df.drop_duplicates()  
- ```
+```python
+df.drop_duplicates()  
+
+```
 - **Justification**: We remove all duplicated records because duplicated records will skew data distribution.
 
 - **Impact**: 
